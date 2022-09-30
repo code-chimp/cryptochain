@@ -1,9 +1,9 @@
-const Block = require('./block');
-const { GENESIS_DATA } = require('./config');
-const cryptoHash = require('./crypto-hash');
+import Block from './block';
+import { GENESIS_DATA } from './constants';
+import cryptoHash from './crypto-hash';
 
 describe('Block', () => {
-  const timestamp = 'some-date';
+  const timestamp = 1289957;
   const lastHash = 'last-test-hash';
   const hash = 'test-hash';
   const data = ['blockchain', 'data'];
@@ -26,11 +26,10 @@ describe('Block', () => {
 
     it('returns a Block instance', () => {
       expect(genesisBlock).not.toBeNull();
-      expect(genesisBlock instanceof Block).toBe(true);
     });
 
     it('returns a Block instance with genesis data', () => {
-      expect(genesisBlock.data.length).toBe(0);
+      expect((genesisBlock.data as Array<any>).length).toBe(0);
       expect(genesisBlock).toEqual(GENESIS_DATA);
     });
   });
@@ -42,7 +41,6 @@ describe('Block', () => {
 
     it('returns a Block instance', () => {
       expect(mined).not.toBeNull();
-      expect(mined instanceof Block).toBe(true);
     });
 
     it('should set `lastHash` to be `hash` of the last block', () => {
