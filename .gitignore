@@ -1,3 +1,5 @@
+coverage/
+
 ### VisualStudioCode template
 .vscode/*
 !.vscode/settings.json
@@ -188,7 +190,6 @@ Sessionx.vim
 
 # Temporary
 .netrwhist
-*~
 # Auto-generated tag files
 tags
 # Persistent undo
