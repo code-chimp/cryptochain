@@ -8,3 +8,5 @@ export const GENESIS_DATA: IBlock = {
   hash: '=====',
   data: [],
 };
+
+export const INVALID_CHAIN_ERROR = 'passed invalid chain:';

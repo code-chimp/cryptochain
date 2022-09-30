@@ -1,20 +1,21 @@
 import Block from './block';
-import { GENESIS_DATA } from './constants';
-import cryptoHash from './crypto-hash';
+import { GENESIS_DATA } from '../constants';
+import { cryptoHash } from '../utilities';
+import IBlock from '../@interfaces/IBlock';
 
 describe('Block', () => {
-  const timestamp = 1289957;
-  const lastHash = 'last-test-hash';
-  const hash = 'test-hash';
-  const data = ['blockchain', 'data'];
-  const block = new Block({
-    timestamp,
-    lastHash,
-    hash,
-    data,
-  });
-
   it('should have timestamp, lastHash, hash, and data properties', () => {
+    const timestamp = 1289957;
+    const lastHash = 'last-test-hash';
+    const hash = 'test-hash';
+    const data = ['blockchain', 'data'];
+    const block = new Block({
+      timestamp,
+      lastHash,
+      hash,
+      data,
+    });
+
     expect(block.timestamp).toEqual(timestamp);
     expect(block.lastHash).toEqual(lastHash);
     expect(block.hash).toEqual(hash);
@@ -22,7 +23,11 @@ describe('Block', () => {
   });
 
   describe('genesis()', () => {
-    const genesisBlock = Block.genesis();
+    let genesisBlock: IBlock;
+
+    beforeEach(() => {
+      genesisBlock = Block.genesis();
+    });
 
     it('returns a Block instance', () => {
       expect(genesisBlock).not.toBeNull();
@@ -35,9 +40,14 @@ describe('Block', () => {
   });
 
   describe('mineBlock()', () => {
-    const lastBlock = Block.genesis();
     const data = 'test data';
-    const mined = Block.mineBlock({ lastBlock, data });
+    let lastBlock: IBlock;
+    let mined: IBlock;
+
+    beforeEach(() => {
+      lastBlock = Block.genesis();
+      mined = Block.mineBlock({ lastBlock, data });
+    });
 
     it('returns a Block instance', () => {
       expect(mined).not.toBeNull();

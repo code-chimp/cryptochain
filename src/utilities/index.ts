@@ -1,0 +1,1 @@
+export { cryptoHash } from './utilities';

@@ -19,6 +19,11 @@
   "overrides": [],
   "plugins": ["jest"],
   "rules": {
-    "no-console": "error"
+    "no-console": [
+      "error",
+      {
+        "allow": ["error", "info", "warn"]
+      }
+    ]
   }
 }
