@@ -40,7 +40,7 @@ export default class Blockchain implements IBlockchain {
     }
 
     for (let i = 1, j = chain.length; i < j; i++) {
-      const { timestamp, lastHash, hash, data } = chain[i];
+      const { timestamp, lastHash, hash, data, difficulty, nonce } = chain[i];
 
       // verify ordering
       if (lastHash !== chain[i - 1].hash) {
@@ -48,7 +48,7 @@ export default class Blockchain implements IBlockchain {
       }
 
       // verify content
-      if (hash !== cryptoHash(timestamp, lastHash, data)) {
+      if (hash !== cryptoHash(timestamp, lastHash, data, difficulty, nonce)) {
         return false;
       }
     }

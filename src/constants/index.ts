@@ -2,11 +2,15 @@
 
 import IBlock from '../@interfaces/IBlock';
 
+export const INITIAL_DIFFICULTY = 3;
+
 export const GENESIS_DATA: IBlock = {
   timestamp: 1,
   lastHash: '-----',
   hash: '=====',
   data: [],
+  difficulty: INITIAL_DIFFICULTY,
+  nonce: 0,
 };
 
 export const INVALID_CHAIN_ERROR = 'passed invalid chain:';

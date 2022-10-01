@@ -1,7 +1,7 @@
-import Blockchain from './blockchain';
 import IBlockchain from '../@interfaces/IBlockchain';
-import { GENESIS_DATA, INVALID_CHAIN_ERROR } from '../constants';
 import IBlock from '../@interfaces/IBlock';
+import { GENESIS_DATA, INVALID_CHAIN_ERROR } from '../constants';
+import Blockchain from './blockchain';
 
 describe('Blockchain', () => {
   describe('base functionality', () => {

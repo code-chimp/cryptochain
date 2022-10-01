@@ -1,25 +1,32 @@
-import Block from './block';
+import IBlock from '../@interfaces/IBlock';
 import { GENESIS_DATA } from '../constants';
 import { cryptoHash } from '../utilities';
-import IBlock from '../@interfaces/IBlock';
+import Block from './block';
 
 describe('Block', () => {
-  it('should have timestamp, lastHash, hash, and data properties', () => {
+  it('should have the required properties', () => {
     const timestamp = 1289957;
     const lastHash = 'last-test-hash';
     const hash = 'test-hash';
     const data = ['blockchain', 'data'];
+    const nonce = 1;
+    const difficulty = 1;
+
     const block = new Block({
       timestamp,
       lastHash,
       hash,
       data,
+      nonce,
+      difficulty,
     });
 
     expect(block.timestamp).toEqual(timestamp);
     expect(block.lastHash).toEqual(lastHash);
     expect(block.hash).toEqual(hash);
     expect(block.data).toEqual(data);
+    expect(block.nonce).toEqual(nonce);
+    expect(block.difficulty).toEqual(difficulty);
   });
 
   describe('genesis()', () => {
@@ -66,9 +73,16 @@ describe('Block', () => {
     });
 
     it('should create a SHA-256 hash based on the proper inputs', () => {
-      const expected = cryptoHash(mined.timestamp, lastBlock.hash, data);
+      const { timestamp, nonce, difficulty, hash } = mined;
+      const expected = cryptoHash(timestamp, nonce, difficulty, lastBlock.hash, data);
 
-      expect(mined.hash).toBe(expected);
+      expect(hash).toBe(expected);
+    });
+
+    it('should match the difficulty criteria', () => {
+      const expected = '0'.repeat(mined.difficulty);
+
+      expect(mined.hash.substring(0, mined.difficulty)).toEqual(expected);
     });
   });
 });
