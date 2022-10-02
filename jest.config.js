@@ -13,6 +13,8 @@ module.exports = {
     '!**/@types/**',
     '!**/**/index.ts',
     '!jest.config.js',
+    '!**/**.d.ts',
+    '!average-work.ts',
   ],
   coverageThreshold: {
     global: {

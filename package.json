@@ -16,7 +16,9 @@
   "keywords": [],
   "author": "Tim Goshinski <tim@code-chimp.com>",
   "license": "BSD-3-Clause",
-  "dependencies": {},
+  "dependencies": {
+    "hex-to-binary": "^1.0.1"
+  },
   "devDependencies": {
     "@types/eslint": "^8.4.6",
     "@types/eslint-plugin-prettier": "^3.1.0",

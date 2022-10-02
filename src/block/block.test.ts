@@ -1,3 +1,4 @@
+import hexToBinary from 'hex-to-binary';
 import IBlock from '../@interfaces/IBlock';
 import { GENESIS_DATA, MINE_RATE } from '../constants';
 import { cryptoHash } from '../utilities';
@@ -82,7 +83,7 @@ describe('Block', () => {
     it('should match the difficulty criteria', () => {
       const expected = '0'.repeat(mined.difficulty);
 
-      expect(mined.hash.substring(0, mined.difficulty)).toEqual(expected);
+      expect(hexToBinary(mined.hash).substring(0, mined.difficulty)).toEqual(expected);
     });
 
     it('should adjust the difficulty', () => {
