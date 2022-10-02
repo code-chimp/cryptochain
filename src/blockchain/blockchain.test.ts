@@ -2,6 +2,8 @@ import IBlockchain from '../@interfaces/IBlockchain';
 import IBlock from '../@interfaces/IBlock';
 import { GENESIS_DATA, INVALID_CHAIN_ERROR } from '../constants';
 import Blockchain from './blockchain';
+import { cryptoHash } from '../utilities';
+import Block from '../block';
 
 describe('Blockchain', () => {
   describe('base functionality', () => {
@@ -135,6 +137,29 @@ describe('Blockchain', () => {
 
     it('should return `true` if the chain is valid', () => {
       expect(Blockchain.isValidChain(chain)).toBe(true);
+    });
+
+    it('should return `false` if the chain contains a block with a jumped difficulty', () => {
+      const lastBlock = chain[chain.length - 1];
+      const lastHash = lastBlock.hash;
+      const timestamp = Date.now();
+      const nonce = 0;
+      const data = ['test'];
+      const difficulty = lastBlock.difficulty - 3;
+      const hash = cryptoHash(timestamp, lastHash, difficulty, nonce, data);
+
+      const badBlock = new Block({
+        timestamp,
+        lastHash,
+        hash,
+        difficulty,
+        nonce,
+        data,
+      });
+
+      chain.push(badBlock);
+
+      expect(Blockchain.isValidChain(chain)).toBe(false);
     });
   });
 });

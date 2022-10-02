@@ -1,1 +1,2 @@
-export default function hexToBinary(s: string): string;
+declare const hexToBinary: (s: string) => string;
+export default hexToBinary;

@@ -51,6 +51,11 @@ export default class Blockchain implements IBlockchain {
       if (hash !== cryptoHash(timestamp, lastHash, data, difficulty, nonce)) {
         return false;
       }
+
+      // guard for difficulty jumping
+      if (Math.abs(chain[i - 1].difficulty - difficulty) > 1) {
+        return false;
+      }
     }
 
     return true;
