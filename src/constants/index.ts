@@ -3,6 +3,8 @@
 import IBlock from '../@interfaces/IBlock';
 
 export const INITIAL_DIFFICULTY = 3;
+// in milliseconds
+export const MINE_RATE = 1000;
 
 export const GENESIS_DATA: IBlock = {
   timestamp: 1,

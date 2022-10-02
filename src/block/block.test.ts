@@ -1,5 +1,5 @@
 import IBlock from '../@interfaces/IBlock';
-import { GENESIS_DATA } from '../constants';
+import { GENESIS_DATA, MINE_RATE } from '../constants';
 import { cryptoHash } from '../utilities';
 import Block from './block';
 
@@ -83,6 +83,62 @@ describe('Block', () => {
       const expected = '0'.repeat(mined.difficulty);
 
       expect(mined.hash.substring(0, mined.difficulty)).toEqual(expected);
+    });
+
+    it('should adjust the difficulty', () => {
+      const { difficulty } = lastBlock;
+      const possibilities = [difficulty + 1, difficulty - 1];
+
+      expect(possibilities.includes(mined.difficulty)).toBe(true);
+    });
+  });
+
+  describe('adjustDifficulty()', () => {
+    let block: IBlock;
+
+    beforeEach(() => {
+      const timestamp = 1289957;
+      const lastHash = 'last-test-hash';
+      const hash = 'test-hash';
+      const data = ['blockchain', 'data'];
+      const nonce = 0;
+      const difficulty = 3;
+
+      block = new Block({
+        timestamp,
+        lastHash,
+        hash,
+        data,
+        nonce,
+        difficulty,
+      });
+    });
+
+    it('should raise the difficulty for a quickly mined block', () => {
+      const result = Block.adjustDifficulty({
+        originalBlock: block,
+        timestamp: block.timestamp + MINE_RATE - 100,
+      });
+
+      expect(result).toBe(block.difficulty + 1);
+    });
+
+    it('should lower the difficulty for a slowly mined block', () => {
+      const result = Block.adjustDifficulty({
+        originalBlock: block,
+        timestamp: block.timestamp + MINE_RATE + 100,
+      });
+
+      expect(result).toBe(block.difficulty - 1);
+    });
+
+    it('should have a lower limit of 1', () => {
+      const result = Block.adjustDifficulty({
+        originalBlock: { ...block, difficulty: 1 },
+        timestamp: block.timestamp + MINE_RATE + 100,
+      });
+
+      expect(result).toBe(1);
     });
   });
 });
