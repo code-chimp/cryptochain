@@ -1,0 +1,11 @@
+### GET current blocks
+GET http://localhost:3000/api/blocks
+Accept: application/json
+
+### POST new data via block mining
+POST http://localhost:3000/api/mine
+Content-Type: application/json
+
+{
+  "data": ["let's", "get", "crazy"]
+}

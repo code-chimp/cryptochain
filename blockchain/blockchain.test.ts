@@ -3,7 +3,7 @@ import IBlock from '../@interfaces/IBlock';
 import { GENESIS_DATA, INVALID_CHAIN_ERROR } from '../constants';
 import Blockchain from './blockchain';
 import { cryptoHash } from '../utilities';
-import Block from '../block';
+import Block from './block';
 
 describe('Blockchain', () => {
   describe('base functionality', () => {

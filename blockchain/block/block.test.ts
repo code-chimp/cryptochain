@@ -1,7 +1,7 @@
 import hexToBinary from 'hex-to-binary';
-import IBlock from '../@interfaces/IBlock';
-import { GENESIS_DATA, MINE_RATE } from '../constants';
-import { cryptoHash } from '../utilities';
+import IBlock from '../../@interfaces/IBlock';
+import { GENESIS_DATA, MINE_RATE } from '../../constants';
+import { cryptoHash } from '../../utilities';
 import Block from './block';
 
 describe('Block', () => {

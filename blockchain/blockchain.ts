@@ -1,6 +1,6 @@
 import IBlock from '../@interfaces/IBlock';
 import IBlockchain from '../@interfaces/IBlockchain';
-import Block from '../block';
+import Block from './block';
 import { cryptoHash } from '../utilities';
 import { INVALID_CHAIN_ERROR } from '../constants';
 

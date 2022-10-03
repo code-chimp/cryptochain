@@ -5,8 +5,8 @@
   the average time to mine a block
  */
 
-import Blockchain from './src/blockchain';
-import IBlock from './src/@interfaces/IBlock';
+import Blockchain from '../blockchain';
+import IBlock from '../@interfaces/IBlock';
 
 const times: Array<number> = [];
 let prevTimestamp, nextTimestamp, timeDiff, average: number;

@@ -1,0 +1,14 @@
+{
+  "restartable": "rs",
+  "ignore": [".git", ".husky", "node_modules/**/node_modules", "coverage", "dist"],
+  "verbose": true,
+  "execMap": {
+    "ts": "ts-node"
+  },
+  "runOnChangeOnly": false,
+  "watch": ["api/**/*.ts"],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "ts,json"
+}
