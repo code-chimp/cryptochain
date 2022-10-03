@@ -1,6 +1,14 @@
 {
   "restartable": "rs",
-  "ignore": [".git", ".husky", "node_modules/**/node_modules", "coverage", "dist"],
+  "ignore": [
+    ".git/",
+    ".husky/",
+    "node_modules/**/node_modules",
+    "coverage/",
+    "dist/",
+    "scratch.http",
+    "*.test.ts"
+  ],
   "verbose": true,
   "execMap": {
     "ts": "ts-node"
