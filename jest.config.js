@@ -6,6 +6,7 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     '**/*.{js,ts}',
+    '!api/**',
     '!coverage/**',
     '!data-scripts/**',
     '!node_modules/**',
@@ -15,7 +16,6 @@ module.exports = {
     '!**/**/index.ts',
     '!**/**.d.ts',
     '!scripts/average-work.ts',
-    '!pub-sub.ts',
     '!jest.config.js',
   ],
   coverageThreshold: {

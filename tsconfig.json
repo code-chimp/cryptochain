@@ -5,7 +5,6 @@
     "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
     "sourceMap": true,
     "outDir": "dist",
-    "rootDir": "src",
     "strict": true,
     "types": ["node", "jest"],
     "esModuleInterop": true,
