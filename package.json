@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "api:dev": "nodemon ./api/index.ts",
+    "api:dev": "nodemon src/api/index.ts",
     "format": "pretty-quick --staged",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
