@@ -1,22 +1,27 @@
 module.exports = {
-  testRegex: '.*\\.test\\.ts$',
+  testRegex: '.*\\.test\\.tsx?$',
   transform: {
-    '^.+\\.(t|j)s$': 'ts-jest',
+    '^.+\\.(t|j)sx?$': 'ts-jest',
   },
+  setupFilesAfterEnv: ['./setupTests.ts'],
   collectCoverage: true,
   collectCoverageFrom: [
-    '**/*.{js,ts}',
+    '**/*.{js,ts,tsx}',
     '!src/api/**',
     '!coverage/**',
     '!data-scripts/**',
     '!node_modules/**',
     '!**/@enums/**',
     '!**/@interfaces/**',
+    '!**/@mocks/**',
     '!**/@types/**',
     '!**/**/index.ts',
     '!**/**.d.ts',
+    '!src/client/index.tsx',
+    '!src/client/services/**',
     '!scripts/average-work.ts',
     '!jest.config.js',
+    '!setupTests.ts',
   ],
   coverageThreshold: {
     global: {

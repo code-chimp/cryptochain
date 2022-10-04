@@ -36,6 +36,7 @@ describe('Blockchain', () => {
 
       blockchain.addBlock({ data: data1 });
 
+      // eslint-disable-next-line no-magic-numbers
       expect(blockchain.chain.length).toBe(3);
       expect(blockchain.chain[0]).toEqual(GENESIS_DATA);
       expect(blockchain.chain[2].data).toEqual(data1);
@@ -145,6 +146,7 @@ describe('Blockchain', () => {
       const timestamp = Date.now();
       const nonce = 0;
       const data = ['test'];
+      // eslint-disable-next-line no-magic-numbers
       const difficulty = lastBlock.difficulty - 3;
       const hash = cryptoHash(timestamp, lastHash, difficulty, nonce, data);
 

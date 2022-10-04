@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components / App should match the snapshot 1`] = `
+<div>
+  <h1>
+    Welcome to Cryptochain!
+  </h1>
+  <h3>
+    [stub front-end functionality]
+  </h3>
+  <p>
+    There are currently 
+    0
+     block(s) on the chain
+  </p>
+</div>
+`;

@@ -42,7 +42,7 @@ describe('Block', () => {
     });
 
     it('returns a Block instance with genesis data', () => {
-      expect((genesisBlock.data as Array<any>).length).toBe(0);
+      expect((genesisBlock.data as Array<unknown>).length).toBe(0);
       expect(genesisBlock).toEqual(GENESIS_DATA);
     });
   });

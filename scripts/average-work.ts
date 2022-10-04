@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console,no-magic-numbers */
 
 /*
   One-off script to get a feel for the difficulty adjustment affecting

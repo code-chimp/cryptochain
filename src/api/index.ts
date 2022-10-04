@@ -1,7 +1,9 @@
+import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
+import HttpStatusCodes from '../@enums/HttpStatusCodes';
 import IBlock from '../@interfaces/IBlock';
 import Blockchain from '../blockchain';
 import PubSub from './pub-sub';
@@ -16,12 +18,13 @@ const blockchain = new Blockchain();
 const pubsub = new PubSub({ blockchain });
 
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 const syncChains = async (): Promise<void> => {
   try {
     const res = await fetch(`${rootNodeUri}/api/blocks`);
 
-    if (res.status === 200) {
+    if (res.status === HttpStatusCodes.Ok) {
       const chain = (await res.json()) as Array<IBlock>;
 
       blockchain.replaceChain(chain);
@@ -43,6 +46,10 @@ app.post('/api/mine', (req, res) => {
   pubsub.broadcastChain();
 
   res.redirect('/api/blocks');
+});
+
+app.get('*', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 app.listen(port, () => {

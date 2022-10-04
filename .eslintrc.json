@@ -6,24 +6,70 @@
     "sourceType": "module"
   },
   "env": {
+    "browser": true,
     "es2021": true,
-    "node": true,
-    "jest/globals": true
+    "jest/globals": true,
+    "node": true
   },
   "extends": [
+    "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
-    "plugin:jest/recommended"
+    "plugin:react/recommended",
+    "plugin:jest/recommended",
+    "plugin:jsx-a11y/recommended"
   ],
-  "overrides": [],
-  "plugins": ["jest"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": [2, { "args": "none" }]
+      }
+    }
+  ],
+  "plugins": ["@typescript-eslint", "react", "react-hooks", "jest", "jsx-a11y"],
   "rules": {
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": true,
+        "html": true
+      }
+    ],
+    "react/no-array-index-key": 2,
+    "react/no-danger": 1,
+    "react/no-deprecated": 2,
+    "react/no-did-mount-set-state": 1,
+    "react/no-did-update-set-state": 1,
+    "react/no-direct-mutation-state": 2,
+    "react/no-find-dom-node": 1,
+    "react/no-is-mounted": 1,
+    "react/no-multi-comp": 2,
+    "react/no-redundant-should-component-update": 2,
+    "react/no-render-return-value": 2,
+    "react/no-typos": 1,
+    "react/react-in-jsx-scope": 1,
+    "react/jsx-handler-names": "off",
+    "react/jsx-no-duplicate-props": 2,
+    "react/jsx-fragments": 2,
+    "react/jsx-pascal-case": 2,
+    "react/jsx-boolean-value": 2,
+    "no-unused-vars": [2, { "vars": "local", "args": "after-used", "argsIgnorePattern": "_" }],
+    "no-magic-numbers": [2, { "ignore": [-1, 0, 1, 2, 10, 100, 3000, 3001] }],
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "no-prototype-builtins": "off",
     "no-console": [
       "error",
       {
         "allow": ["error", "info", "warn"]
       }
     ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
