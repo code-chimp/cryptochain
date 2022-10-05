@@ -4,6 +4,8 @@ enum HttpStatusCodes {
   Created,
   Accepted,
   NoContent = 204,
+  MovedPermanently = 301,
+  Redirect = 302,
   BadRequest = 400,
   Unauthorized,
   Forbidden = 403,

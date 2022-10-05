@@ -6,7 +6,21 @@ const Channels: Record<string, string> = {
   Blockchain: 'BLOCKCHAIN',
 };
 
-export default class PubSub {
+export interface IPubRequest {
+  channel: string;
+  message: string;
+}
+
+export interface IPubSub {
+  publisher: RedisClientType;
+  subscriber: RedisClientType;
+  handleMessage: (m: string, c: string) => void;
+  subscribeToChannels: () => void;
+  publish: (r: IPubRequest) => void;
+  broadcastChain: () => void;
+}
+
+export default class PubSub implements IPubSub {
   publisher: RedisClientType;
   subscriber: RedisClientType;
   private _blockchain: IBlockchain;
@@ -33,15 +47,15 @@ export default class PubSub {
     }
   };
 
-  subscribeToChannels() {
+  subscribeToChannels = () => {
     Object.values(Channels).forEach(channel => {
       this.subscriber.subscribe(channel, (message, channel) =>
         this.handleMessage(message, channel),
       );
     });
-  }
+  };
 
-  publish({ channel, message }: { channel: string; message: string }) {
+  publish({ channel, message }: IPubRequest) {
     this.publisher.publish(channel, message);
   }
 
